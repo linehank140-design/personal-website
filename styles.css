@@ -8,6 +8,11 @@
   --max:1200px;
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}
+
 *{box-sizing:border-box}
 
 body{
