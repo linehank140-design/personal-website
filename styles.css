@@ -81,6 +81,10 @@ body{
   padding: 80px 60px;
 }
 
+.hero-text{
+  max-width: 560px;
+}
+
 .script{
   font-family: "Georgia", serif;
   font-style:italic;
@@ -123,9 +127,11 @@ body{
 }
 
 /* Image card */
-.hero-card img{
-  width:100%;
-  border-radius:18px;
+.hero img{
+  width: 380px;
+  max-width: 100%;
+  border-radius: 18px;
+  display: block;
 }
 
 /* Mobile */
