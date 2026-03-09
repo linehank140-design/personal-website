@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Katie Linehan | About</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="about">
+    <div class="announcement">
+      <div class="container announcement__inner">
+        <p>
+          <span id="announcementIntro"></span>
+          <a id="announcementLink" href="#" target="_blank" rel="noreferrer"></a>.
+        </p>
+      </div>
+    </div>
+
+    <header class="nav">
+      <div class="container nav__inner">
+        <div class="brand">KATIE LINEHAN</div>
+
+        <nav class="nav__links" aria-label="Primary">
+          <a href="./index.html#home">HOME</a>
+          <a href="./about.html">ABOUT</a>
+          <a href="./index.html#wins">CAREER WINS</a>
+          <a href="./pet-industry.html">PET INDUSTRY</a>
+          <a href="./index.html#news">NEWS</a>
+        </nav>
+
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobileNavMenu"
+          aria-expanded="false"
+        >
+          <span class="nav__toggleLines" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
+      <nav id="mobileNavMenu" class="mobileNavMenu" aria-label="Mobile Primary">
+        <a href="./index.html#home">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./index.html#wins">Career Wins</a>
+        <a href="./pet-industry.html">Pet Industry</a>
+        <a href="./index.html#news">News</a>
+        <a href="./index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="section aboutPage" id="about">
+      <div class="container">
+        <section class="aboutPage__content">
+          <h1 id="aboutTitle" class="aboutPage__title"></h1>
+          <p id="aboutSubhead" class="aboutPage__subhead"></p>
+
+          <div id="aboutIntro" class="aboutTextBlock"></div>
+
+          <section class="aboutPanel">
+            <h2 id="aboutImpactTitle" class="aboutPanel__title"></h2>
+            <ul id="aboutImpactList" class="aboutList"></ul>
+          </section>
+
+          <section class="aboutTextBlock">
+            <h2 id="aboutGrowthTitle" class="aboutPanel__title"></h2>
+            <div id="aboutGrowthParagraphs" class="aboutTextBlock"></div>
+            <p id="aboutGrowthQuote" class="aboutPhilosophy"></p>
+          </section>
+
+          <section class="aboutPanel">
+            <h2 id="aboutCrossFunctionalTitle" class="aboutPanel__title"></h2>
+            <ul id="aboutCrossFunctionalList" class="aboutList aboutList--twoCol"></ul>
+            <p id="aboutCrossFunctionalSupport" class="aboutSupportLine"></p>
+          </section>
+
+          <section class="aboutPanel">
+            <h2 id="aboutKnownForTitle" class="aboutPanel__title"></h2>
+            <ul id="aboutKnownForList" class="aboutList"></ul>
+          </section>
+
+          <section class="aboutTextBlock">
+            <h2 id="aboutCurrentlyTitle" class="aboutPanel__title"></h2>
+            <p id="aboutCurrentlyText"></p>
+          </section>
+
+          <section class="aboutTextBlock">
+            <h2 id="aboutOutsideTitle" class="aboutPanel__title"></h2>
+            <div id="aboutOutsideParagraphs" class="aboutTextBlock"></div>
+          </section>
+
+          <section class="aboutPanel">
+            <h2 id="aboutGalleryTitle" class="aboutPanel__title"></h2>
+            <p id="aboutGalleryNote" class="aboutGalleryNote"></p>
+            <div id="aboutGalleryGrid" class="aboutPhotoGrid"></div>
+          </section>
+
+          <section class="aboutTextBlock aboutCtaBlock">
+            <p id="aboutCtaText"></p>
+            <a id="aboutCtaLink" class="btn btn--primary" href="./index.html#contact"></a>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span>(c) <span id="year"></span> <span id="footerName">Katie Linehan</span></span>
+      </div>
+    </footer>
+
+    <script src="./content.js"></script>
+    <script src="./platform.js"></script>
+  </body>
+</html>

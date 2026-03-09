@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Katie Linehan | Content Platform</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="platform-admin">
+    <div class="announcement">
+      <div class="container announcement__inner">
+        <p>
+          <span id="announcementIntro"></span>
+          <a id="announcementLink" href="#" target="_blank" rel="noreferrer"></a>.
+        </p>
+      </div>
+    </div>
+
+    <header class="nav">
+      <div class="container nav__inner">
+        <div class="brand">KATIE LINEHAN</div>
+
+        <nav class="nav__links" aria-label="Primary">
+          <a href="./index.html#home">HOME</a>
+          <a href="./about.html">ABOUT</a>
+          <a href="./index.html#wins">CAREER WINS</a>
+          <a href="./pet-industry.html">PET INDUSTRY</a>
+          <a href="./index.html#news">NEWS</a>
+          <a href="./platform-admin.html">PLATFORM</a>
+          <a href="./post-builder.html">POST BUILDER</a>
+        </nav>
+
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobileNavMenu"
+          aria-expanded="false"
+        >
+          <span class="nav__toggleLines" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
+      <nav id="mobileNavMenu" class="mobileNavMenu" aria-label="Mobile Primary">
+        <a href="./index.html#home">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./index.html#wins">Career Wins</a>
+        <a href="./pet-industry.html">Pet Industry</a>
+        <a href="./index.html#news">News</a>
+        <a href="./index.html#contact">Contact</a>
+        <a href="./platform-admin.html">Platform</a>
+        <a href="./post-builder.html">Post Builder</a>
+      </nav>
+    </header>
+
+    <main class="section adminPage" id="platform">
+      <div class="container section__inner adminPage__inner">
+        <h1 class="section__title">Content Platform</h1>
+        <p class="section__lede">
+          Edit one JSON model and apply updates across home, about, and pet industry pages.
+          Changes are saved in this browser only.
+        </p>
+
+        <div class="adminActions" role="group" aria-label="Content actions">
+          <button id="saveContentButton" class="btn btn--primary" type="button">Save Changes</button>
+          <button id="resetContentButton" class="btn btn--ghost" type="button">Reset Defaults</button>
+          <button id="exportContentButton" class="btn btn--ghost" type="button">Export JSON</button>
+          <label class="adminImportLabel" for="importContentInput">
+            Import JSON
+            <input id="importContentInput" class="adminImportInput" type="file" accept="application/json,.json" />
+          </label>
+        </div>
+
+        <p id="adminStatus" class="adminStatus" aria-live="polite"></p>
+
+        <label class="adminEditorLabel" for="contentEditor">Site content JSON</label>
+        <textarea
+          id="contentEditor"
+          class="adminEditor"
+          spellcheck="false"
+          aria-label="Site content JSON editor"
+        ></textarea>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span>(c) <span id="year"></span> <span id="footerName">Katie Linehan</span></span>
+      </div>
+    </footer>
+
+    <script src="./content.js"></script>
+    <script src="./platform.js"></script>
+  </body>
+</html>

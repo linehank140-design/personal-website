@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Katie Linehan | Post Builder</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="post-builder">
+    <div class="announcement">
+      <div class="container announcement__inner">
+        <p>
+          <span id="announcementIntro"></span>
+          <a id="announcementLink" href="#" target="_blank" rel="noreferrer"></a>.
+        </p>
+      </div>
+    </div>
+
+    <header class="nav">
+      <div class="container nav__inner">
+        <div class="brand">KATIE LINEHAN</div>
+
+        <nav class="nav__links" aria-label="Primary">
+          <a href="./index.html#home">HOME</a>
+          <a href="./about.html">ABOUT</a>
+          <a href="./index.html#wins">CAREER WINS</a>
+          <a href="./pet-industry.html">PET INDUSTRY</a>
+          <a href="./index.html#news">NEWS</a>
+          <a href="./platform-admin.html">PLATFORM</a>
+          <a href="./post-builder.html">POST BUILDER</a>
+        </nav>
+
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobileNavMenu"
+          aria-expanded="false"
+        >
+          <span class="nav__toggleLines" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
+      <nav id="mobileNavMenu" class="mobileNavMenu" aria-label="Mobile Primary">
+        <a href="./index.html#home">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./index.html#wins">Career Wins</a>
+        <a href="./pet-industry.html">Pet Industry</a>
+        <a href="./index.html#news">News</a>
+        <a href="./index.html#contact">Contact</a>
+        <a href="./platform-admin.html">Platform</a>
+        <a href="./post-builder.html">Post Builder</a>
+      </nav>
+    </header>
+
+    <main class="section postBuilderPage" id="post-builder">
+      <div class="container section__inner">
+        <h1 class="section__title">LinkedIn Announcement Builder</h1>
+        <p class="section__lede">
+          Build a ready-to-post announcement in the same format as the NIQ + Amazon example.
+        </p>
+
+        <div class="postBuilderGrid">
+          <section class="builderCard" aria-labelledby="builderFormTitle">
+            <h2 id="builderFormTitle" class="builderCard__title">Inputs</h2>
+
+            <div class="builderField">
+              <label for="orgName">Organization name</label>
+              <input id="orgName" type="text" placeholder="NIQ for Media" />
+            </div>
+
+            <div class="builderField">
+              <label for="partnerName">Partner/platform</label>
+              <input id="partnerName" type="text" placeholder="Amazon Marketing Cloud (AMC)" />
+            </div>
+
+            <div class="builderField">
+              <label for="market">Market or country</label>
+              <input id="market" type="text" placeholder="Italy" />
+            </div>
+
+            <div class="builderField">
+              <label for="initiativeName">Initiative summary</label>
+              <input id="initiativeName" type="text" placeholder="a collaboration to measure cross-platform campaign impact" />
+            </div>
+
+            <div class="builderField">
+              <label for="audience">Audience</label>
+              <input id="audience" type="text" placeholder="advertisers and agencies" />
+            </div>
+
+            <div class="builderField">
+              <label for="sourceOne">Data source one</label>
+              <input id="sourceOne" type="text" placeholder="NIQ panel data" />
+            </div>
+
+            <div class="builderField">
+              <label for="sourceTwo">Data source two</label>
+              <input id="sourceTwo" type="text" placeholder="Amazon advertising signals" />
+            </div>
+
+            <div class="builderField">
+              <label for="reachLine">Reach question</label>
+              <input id="reachLine" type="text" placeholder="How many consumers were reached across platforms?" />
+            </div>
+
+            <div class="builderField">
+              <label for="audienceLine">Audience composition question</label>
+              <input id="audienceLine" type="text" placeholder="Who was reached, and how did audiences differ?" />
+            </div>
+
+            <div class="builderField">
+              <label for="purchaseLine">Purchase behavior question</label>
+              <input id="purchaseLine" type="text" placeholder="Did ad exposure lead to purchases, and where?" />
+            </div>
+
+            <div class="builderField">
+              <label for="pressUrl">Press release URL</label>
+              <input id="pressUrl" type="url" placeholder="https://lnkd.in/example" />
+            </div>
+
+            <div class="builderField">
+              <label for="closingLine">Closing CTA line</label>
+              <textarea id="closingLine" rows="3" placeholder="Want to learn how cross-platform measurement can elevate your strategy? Reach out and lets talk."></textarea>
+            </div>
+
+            <div class="builderField">
+              <label for="hashtags">Hashtags (comma-separated)</label>
+              <input id="hashtags" type="text" placeholder="NIQMedia, AmazonMarketingCloud, CrossPlatformMeasurement" />
+            </div>
+
+            <div class="builderActions" role="group" aria-label="Builder actions">
+              <button id="loadExampleButton" class="btn btn--ghost" type="button">Load Example</button>
+              <button id="generateDraftButton" class="btn btn--primary" type="button">Generate Draft</button>
+              <button id="generateVariantsButton" class="btn btn--ghost" type="button">Generate 3 Variants</button>
+            </div>
+          </section>
+
+          <section class="builderCard" aria-labelledby="builderOutputTitle">
+            <h2 id="builderOutputTitle" class="builderCard__title">Output</h2>
+            <p id="builderStatus" class="adminStatus adminStatus--info">Fill in inputs, then generate your draft.</p>
+
+            <div class="builderActions" role="group" aria-label="Output actions">
+              <button id="copyOutputButton" class="btn btn--primary" type="button">Copy Post</button>
+              <button id="exportOutputButton" class="btn btn--ghost" type="button">Export .txt</button>
+            </div>
+
+            <textarea id="postOutput" class="builderOutput" spellcheck="false" aria-label="Generated LinkedIn post output"></textarea>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span>(c) <span id="year"></span> <span id="footerName">Katie Linehan</span></span>
+      </div>
+    </footer>
+
+    <script src="./content.js"></script>
+    <script src="./platform.js"></script>
+    <script src="./post-builder.js"></script>
+  </body>
+</html>

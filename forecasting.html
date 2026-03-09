@@ -1,0 +1,1134 @@
+<!--
+Demand Forecasting Simulator: Users set baseline demand, variability, horizon, seasonality, trend, and promo weeks/lift.
+The page generates a deterministic week-by-week forecast, expected range band, promo-adjusted view, chart, summary metrics, actionable operator notes, CSV export, and optional inventory-tool handoff via localStorage.
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Demand Forecasting Simulator</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <style>
+      :root {
+        --bg: #f5efe9;
+        --panel: #faf6f1;
+        --ink: #3b2f2f;
+        --muted: #6d645f;
+        --accent: #b58c95;
+        --accent-dark: #8e6c74;
+        --line: rgba(59, 47, 47, 0.14);
+        --shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        --ok: #2d6b45;
+        --warn: #8a5a1f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      .topTabs {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid var(--line);
+        background: #3b2f2f;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      }
+
+      .topTabs__inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 20px;
+        min-height: 54px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .tabLink {
+        color: #f2ece7;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .tabLink:hover,
+      .tabLink:focus-visible {
+        background: rgba(255, 255, 255, 0.14);
+        outline: none;
+      }
+
+      .tabLink[aria-current="page"] {
+        background: var(--accent);
+        color: #ffffff;
+      }
+
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 28px 20px 44px;
+        display: grid;
+        gap: 18px;
+      }
+
+      .headerCard,
+      .panel,
+      .outputPanel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+      }
+
+      .headerCard {
+        padding: 22px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(30px, 4.1vw, 46px);
+        line-height: 1.05;
+        font-family: ui-serif, Georgia, Times, "Times New Roman", serif;
+      }
+
+      .microcopy {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.65;
+        max-width: 860px;
+      }
+
+      .panel {
+        padding: 18px;
+        display: grid;
+        gap: 20px;
+      }
+
+      .panelTitle {
+        margin: 0;
+        font-size: 24px;
+        font-family: ui-serif, Georgia, Times, "Times New Roman", serif;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .field,
+      .subPanel {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+      }
+
+      .subPanel {
+        padding: 14px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .subPanel h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .field {
+        padding: 12px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .field label {
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      input,
+      select {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 11px 12px;
+        font: inherit;
+        color: var(--ink);
+        background: #fff;
+      }
+
+      input:focus,
+      select:focus,
+      button:focus-visible,
+      a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .helper {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .pillReadout {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--ink);
+        font-weight: 700;
+        background: #f7f0f2;
+        border: 1px solid rgba(181, 140, 149, 0.35);
+        border-radius: 999px;
+        padding: 8px 12px;
+        width: fit-content;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .weekChecklistWrap {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        max-height: 230px;
+        overflow: auto;
+        padding: 8px;
+      }
+
+      .weekChecklist {
+        display: grid;
+        gap: 6px;
+      }
+
+      .weekItem {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        border-radius: 9px;
+      }
+
+      .weekItem:hover {
+        background: #f7f1f3;
+      }
+
+      .weekItem input {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+      }
+
+      .weekLabel {
+        font-size: 14px;
+        color: var(--ink);
+      }
+
+      .rangeRow {
+        display: grid;
+        gap: 8px;
+      }
+
+      .rangeHeader {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .ctaRow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .btn {
+        border: 1px solid transparent;
+        border-radius: 10px;
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btnPrimary {
+        background: #3b2f2f;
+        color: #fff;
+        border-color: #3b2f2f;
+      }
+
+      .btnPrimary:hover {
+        background: #322828;
+      }
+
+      .btnSecondary {
+        background: transparent;
+        color: var(--ink);
+        border-color: var(--line);
+      }
+
+      .btnSecondary:hover {
+        background: #f2e7e9;
+        border-color: rgba(181, 140, 149, 0.7);
+      }
+
+      .outputPanel {
+        padding: 18px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .chartWrap {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      canvas {
+        width: 100%;
+        height: 320px;
+        display: block;
+      }
+
+      .legend {
+        margin-top: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .legendItem {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .swatch {
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        border: 1px solid var(--line);
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .summaryCard {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      .summaryLabel {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .summaryValue {
+        margin: 6px 0 0;
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 1.2;
+      }
+
+      .tableWrap {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: auto;
+        background: #fff;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 760px;
+      }
+
+      th,
+      td {
+        padding: 10px 10px;
+        border-bottom: 1px solid rgba(59, 47, 47, 0.08);
+        text-align: left;
+        font-size: 13px;
+      }
+
+      th {
+        position: sticky;
+        top: 0;
+        background: #f8f3ee;
+        color: #4e4641;
+        z-index: 1;
+      }
+
+      .insightPanel {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px;
+      }
+
+      .insightPanel h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .insightPanel ul {
+        margin: 0;
+        padding-left: 18px;
+        display: grid;
+        gap: 7px;
+        color: #4f4743;
+      }
+
+      .insightWarn {
+        color: var(--warn);
+      }
+
+      .insightOk {
+        color: var(--ok);
+      }
+
+      .handoffHint {
+        margin: 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .handoffLink {
+        color: var(--accent-dark);
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      @media (max-width: 980px) {
+        .cards {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .headerCard,
+        .panel,
+        .outputPanel {
+          padding: 14px;
+          border-radius: 14px;
+        }
+
+        canvas {
+          height: 260px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topTabs">
+      <div class="topTabs__inner">
+        <a class="tabLink" href="./index.html">Home</a>
+        <a class="tabLink" href="./about.html">About</a>
+        <a class="tabLink" href="./pet-industry.html">Pet Industry</a>
+        <a class="tabLink" href="./forecasting.html" aria-current="page">Demand Forecasting</a>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="headerCard">
+        <h1>Demand Forecasting Simulator</h1>
+        <p class="microcopy">Plug in your assumptions to generate a weekly demand forecast and promo scenario.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="inputsTitle">
+        <h2 id="inputsTitle" class="panelTitle">Inputs</h2>
+
+        <div class="grid">
+          <section class="subPanel" style="grid-column: span 12;">
+            <h3>Baseline demand</h3>
+            <div class="grid">
+              <div class="field" style="grid-column: span 6;">
+                <label for="avgWeeklyUnits">Average weekly units sold</label>
+                <input id="avgWeeklyUnits" type="number" min="0" step="1" value="150" />
+              </div>
+              <div class="field" style="grid-column: span 6;">
+                <label for="demandVariability">Demand variability</label>
+                <select id="demandVariability">
+                  <option value="low">Low</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="high">High</option>
+                </select>
+                <p id="cvReadout" class="pillReadout">CV: 0.25</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="subPanel" style="grid-column: span 12;">
+            <h3>Planning settings</h3>
+            <div class="grid">
+              <div class="field" style="grid-column: span 4;">
+                <label for="horizonWeeks">Forecast horizon</label>
+                <select id="horizonWeeks">
+                  <option value="8">8 weeks</option>
+                  <option value="13" selected>13 weeks</option>
+                  <option value="26">26 weeks</option>
+                </select>
+              </div>
+              <div class="field" style="grid-column: span 4;">
+                <label for="seasonality">Seasonality</label>
+                <select id="seasonality">
+                  <option value="none" selected>None</option>
+                  <option value="mild">Mild</option>
+                  <option value="strong">Strong</option>
+                </select>
+              </div>
+              <div class="field" style="grid-column: span 4;">
+                <label for="trend">Trend</label>
+                <select id="trend">
+                  <option value="flat" selected>Flat</option>
+                  <option value="growing">Growing</option>
+                  <option value="declining">Declining</option>
+                </select>
+              </div>
+              <div id="trendPctWrap" class="field hidden" style="grid-column: span 4;">
+                <label for="trendPctMonth">Trend % per month</label>
+                <input id="trendPctMonth" type="number" min="0" step="0.1" value="0" />
+                <p class="helper">Used only for Growing/Declining.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="subPanel" style="grid-column: span 12;">
+            <h3>Promo planning</h3>
+            <div class="grid">
+              <div class="field" style="grid-column: span 8;">
+                <label>Promo weeks (select all that apply)</label>
+                <div class="weekChecklistWrap">
+                  <div id="weekChecklist" class="weekChecklist"></div>
+                </div>
+              </div>
+              <div class="field" style="grid-column: span 4;">
+                <label for="promoLift">Promo lift</label>
+                <div class="rangeRow">
+                  <div class="rangeHeader">
+                    <span>0%</span>
+                    <strong id="promoLiftReadout">20%</strong>
+                    <span>80%</span>
+                  </div>
+                  <input id="promoLift" type="range" min="0" max="80" step="1" value="20" />
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="ctaRow">
+          <button id="runForecastBtn" class="btn btnPrimary" type="button">Run Forecast</button>
+          <button id="downloadCsvBtn" class="btn btnSecondary" type="button">Download forecast CSV</button>
+          <button id="handoffBtn" class="btn btnSecondary" type="button">Use this forecast in Inventory Tool</button>
+          <p id="handoffHint" class="handoffHint hidden">
+            Forecast saved. Open <a class="handoffLink" href="./inventory.html">inventory.html</a> when ready.
+          </p>
+        </div>
+      </section>
+
+      <section class="outputPanel" aria-labelledby="outputsTitle">
+        <h2 id="outputsTitle" class="panelTitle">Forecast Output</h2>
+
+        <div class="chartWrap">
+          <canvas id="forecastCanvas" width="1000" height="360" aria-label="Forecast chart" role="img"></canvas>
+          <div class="legend">
+            <span class="legendItem"><span class="swatch" style="background:#3b2f2f"></span>Promo-adjusted forecast</span>
+            <span class="legendItem"><span class="swatch" style="background:rgba(181,140,149,.35)"></span>Expected range</span>
+            <span class="legendItem"><span class="swatch" style="background:#b58c95"></span>Promo week marker</span>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="summaryCard">
+            <p class="summaryLabel">Total forecast units</p>
+            <p id="sumTotal" class="summaryValue">0</p>
+          </article>
+          <article class="summaryCard">
+            <p class="summaryLabel">Average weekly forecast</p>
+            <p id="sumAvg" class="summaryValue">0</p>
+          </article>
+          <article class="summaryCard">
+            <p class="summaryLabel">Peak week forecast</p>
+            <p id="sumPeak" class="summaryValue">0</p>
+          </article>
+          <article class="summaryCard">
+            <p class="summaryLabel">Promo incremental units</p>
+            <p id="sumPromoInc" class="summaryValue">0</p>
+          </article>
+        </div>
+
+        <div class="insightPanel">
+          <h3>What I'd do with this</h3>
+          <ul id="insightList"></ul>
+        </div>
+
+        <div class="tableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>week_start</th>
+                <th>baseline_forecast</th>
+                <th>promo_adjusted_forecast</th>
+                <th>promo_week</th>
+                <th>expected_low</th>
+                <th>expected_high</th>
+              </tr>
+            </thead>
+            <tbody id="forecastTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        "use strict";
+
+        var cvMap = {
+          low: 0.15,
+          medium: 0.25,
+          high: 0.4
+        };
+
+        var debounceTimer = null;
+        var latestRows = [];
+        var latestMetadata = null;
+
+        var els = {
+          avgWeeklyUnits: document.getElementById("avgWeeklyUnits"),
+          demandVariability: document.getElementById("demandVariability"),
+          cvReadout: document.getElementById("cvReadout"),
+          horizonWeeks: document.getElementById("horizonWeeks"),
+          seasonality: document.getElementById("seasonality"),
+          trend: document.getElementById("trend"),
+          trendPctWrap: document.getElementById("trendPctWrap"),
+          trendPctMonth: document.getElementById("trendPctMonth"),
+          weekChecklist: document.getElementById("weekChecklist"),
+          promoLift: document.getElementById("promoLift"),
+          promoLiftReadout: document.getElementById("promoLiftReadout"),
+          runForecastBtn: document.getElementById("runForecastBtn"),
+          downloadCsvBtn: document.getElementById("downloadCsvBtn"),
+          handoffBtn: document.getElementById("handoffBtn"),
+          handoffHint: document.getElementById("handoffHint"),
+          sumTotal: document.getElementById("sumTotal"),
+          sumAvg: document.getElementById("sumAvg"),
+          sumPeak: document.getElementById("sumPeak"),
+          sumPromoInc: document.getElementById("sumPromoInc"),
+          forecastTableBody: document.getElementById("forecastTableBody"),
+          insightList: document.getElementById("insightList"),
+          forecastCanvas: document.getElementById("forecastCanvas")
+        };
+
+        function fmtInt(value) {
+          return Math.round(value).toLocaleString();
+        }
+
+        function fmtOne(value) {
+          return Number(value).toFixed(1);
+        }
+
+        function toISODate(dateObj) {
+          var y = dateObj.getFullYear();
+          var m = String(dateObj.getMonth() + 1).padStart(2, "0");
+          var d = String(dateObj.getDate()).padStart(2, "0");
+          return y + "-" + m + "-" + d;
+        }
+
+        function prettyWeekLabel(dateObj, weekIndex) {
+          var month = dateObj.toLocaleDateString(undefined, { month: "short" });
+          var day = dateObj.toLocaleDateString(undefined, { day: "numeric" });
+          return "Week " + (weekIndex + 1) + " (" + month + " " + day + ")";
+        }
+
+        function getNextMonday() {
+          var now = new Date();
+          now.setHours(0, 0, 0, 0);
+          var day = now.getDay();
+          var daysUntilMonday = ((8 - day) % 7) || 7;
+          var monday = new Date(now);
+          monday.setDate(now.getDate() + daysUntilMonday);
+          return monday;
+        }
+
+        function buildWeekStarts(horizon) {
+          var starts = [];
+          var first = getNextMonday();
+          for (var i = 0; i < horizon; i += 1) {
+            var d = new Date(first);
+            d.setDate(first.getDate() + i * 7);
+            starts.push(d);
+          }
+          return starts;
+        }
+
+        function seasonalityMultiplier(type, index) {
+          if (type === "none") return 1;
+          var cycle = 13;
+          var radians = (2 * Math.PI * (index % cycle)) / cycle;
+          var amp = type === "strong" ? 0.2 : 0.1;
+          return 1 + amp * Math.sin(radians);
+        }
+
+        function trendMultiplier(type, index, pctPerMonth) {
+          if (type === "flat") return 1;
+          var pct = Math.max(0, Number(pctPerMonth) || 0);
+          if (type === "declining") {
+            pct = Math.min(99, pct);
+          }
+          var monthlyFactor = type === "growing" ? 1 + pct / 100 : 1 - pct / 100;
+          var weeklyFactor = Math.pow(monthlyFactor, 1 / 4.345);
+          return Math.pow(weeklyFactor, index);
+        }
+
+        function getState() {
+          var mean = Math.max(0, Number(els.avgWeeklyUnits.value) || 0);
+          var variability = els.demandVariability.value;
+          var cv = cvMap[variability] || cvMap.medium;
+          var horizon = Number(els.horizonWeeks.value) || 13;
+          var seasonality = els.seasonality.value;
+          var trend = els.trend.value;
+          var trendPctMonth = Math.max(0, Number(els.trendPctMonth.value) || 0);
+          var promoLift = Math.max(0, Number(els.promoLift.value) || 0) / 100;
+
+          var promoWeeks = new Set();
+          var checks = els.weekChecklist.querySelectorAll("input[type='checkbox']");
+          checks.forEach(function (input) {
+            if (input.checked) {
+              promoWeeks.add(Number(input.dataset.weekIndex));
+            }
+          });
+
+          return {
+            mean: mean,
+            cv: cv,
+            horizon: horizon,
+            seasonality: seasonality,
+            trend: trend,
+            trendPctMonth: trendPctMonth,
+            promoLift: promoLift,
+            promoWeeks: promoWeeks,
+            variability: variability
+          };
+        }
+
+        function rebuildWeekChecklist() {
+          var horizon = Number(els.horizonWeeks.value) || 13;
+          var starts = buildWeekStarts(horizon);
+
+          var selectedBefore = new Set();
+          var existing = els.weekChecklist.querySelectorAll("input[type='checkbox']");
+          existing.forEach(function (input) {
+            if (input.checked) selectedBefore.add(Number(input.dataset.weekIndex));
+          });
+
+          els.weekChecklist.innerHTML = "";
+
+          starts.forEach(function (dateObj, idx) {
+            var row = document.createElement("label");
+            row.className = "weekItem";
+
+            var cb = document.createElement("input");
+            cb.type = "checkbox";
+            cb.dataset.weekIndex = String(idx);
+            cb.checked = selectedBefore.has(idx);
+
+            var text = document.createElement("span");
+            text.className = "weekLabel";
+            text.textContent = prettyWeekLabel(dateObj, idx);
+
+            row.appendChild(cb);
+            row.appendChild(text);
+            els.weekChecklist.appendChild(row);
+          });
+        }
+
+        function computeForecast(state) {
+          var starts = buildWeekStarts(state.horizon);
+          var rows = [];
+
+          for (var i = 0; i < state.horizon; i += 1) {
+            var base =
+              state.mean *
+              seasonalityMultiplier(state.seasonality, i) *
+              trendMultiplier(state.trend, i, state.trendPctMonth);
+
+            var promoWeek = state.promoWeeks.has(i);
+            var promoAdjusted = promoWeek ? base * (1 + state.promoLift) : base;
+
+            var low = promoAdjusted * (1 - state.cv);
+            var high = promoAdjusted * (1 + state.cv);
+
+            rows.push({
+              idx: i,
+              week_start: toISODate(starts[i]),
+              label: prettyWeekLabel(starts[i], i),
+              baseline_forecast: base,
+              promo_adjusted_forecast: promoAdjusted,
+              promo_week: promoWeek,
+              expected_low: low,
+              expected_high: high
+            });
+          }
+
+          return rows;
+        }
+
+        function renderSummary(rows) {
+          if (!rows.length) return;
+
+          var total = rows.reduce(function (acc, row) {
+            return acc + row.promo_adjusted_forecast;
+          }, 0);
+          var avg = total / rows.length;
+
+          var peak = rows.reduce(function (maxRow, row) {
+            return row.promo_adjusted_forecast > maxRow.promo_adjusted_forecast ? row : maxRow;
+          }, rows[0]);
+
+          var promoIncremental = rows.reduce(function (acc, row) {
+            return acc + (row.promo_adjusted_forecast - row.baseline_forecast);
+          }, 0);
+
+          els.sumTotal.textContent = fmtInt(total);
+          els.sumAvg.textContent = fmtInt(avg);
+          els.sumPeak.textContent = fmtInt(peak.promo_adjusted_forecast) + " (" + peak.label + ")";
+          els.sumPromoInc.textContent = fmtInt(promoIncremental);
+        }
+
+        function renderTable(rows) {
+          els.forecastTableBody.innerHTML = rows
+            .map(function (row) {
+              return (
+                "<tr>" +
+                "<td>" + row.week_start + "</td>" +
+                "<td>" + fmtInt(row.baseline_forecast) + "</td>" +
+                "<td>" + fmtInt(row.promo_adjusted_forecast) + "</td>" +
+                "<td>" + (row.promo_week ? "Yes" : "No") + "</td>" +
+                "<td>" + fmtInt(row.expected_low) + "</td>" +
+                "<td>" + fmtInt(row.expected_high) + "</td>" +
+                "</tr>"
+              );
+            })
+            .join("");
+        }
+
+        function renderInsights(rows, state) {
+          var promoWeeksCount = rows.filter(function (r) { return r.promo_week; }).length;
+          var items = [];
+
+          if (state.promoLift >= 0.3 && promoWeeksCount >= 3) {
+            items.push("Promo intensity is high across multiple weeks; pressure-test inventory buffers to reduce stockout risk.");
+          }
+
+          if (state.seasonality === "strong") {
+            items.push("Strong seasonality selected; validate these assumptions against last-year weekly patterns before locking plans.");
+          } else if (state.seasonality === "mild") {
+            items.push("Mild seasonality is a good starting point; review category events to tune peaks and troughs.");
+          }
+
+          if (state.trend === "growing") {
+            items.push("With a growth trend, revisit assumptions monthly so demand plans stay aligned to current run-rate.");
+          }
+
+          if (state.trend === "declining") {
+            items.push("With a declining trend, monitor markdown and media strategy to protect velocity in softer weeks.");
+          }
+
+          if (state.cv >= 0.4) {
+            items.push("High variability suggests wider operating ranges; coordinate supply and account teams on upside/downside scenarios.");
+          }
+
+          if (!items.length) {
+            items.push("This setup looks operationally manageable; align promo timing with supply readiness and keep a simple monthly review cadence.");
+          }
+
+          els.insightList.innerHTML = items
+            .slice(0, 3)
+            .map(function (txt) { return "<li>" + txt + "</li>"; })
+            .join("");
+        }
+
+        function drawChart(rows) {
+          var canvas = els.forecastCanvas;
+          var ctx = canvas.getContext("2d");
+          if (!ctx) return;
+
+          var parent = canvas.parentElement;
+          if (parent) {
+            var cssWidth = parent.clientWidth - 8;
+            var dpr = window.devicePixelRatio || 1;
+            canvas.width = Math.max(400, Math.floor(cssWidth * dpr));
+            canvas.height = Math.floor(320 * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          }
+
+          var w = canvas.width / (window.devicePixelRatio || 1);
+          var h = canvas.height / (window.devicePixelRatio || 1);
+          ctx.clearRect(0, 0, w, h);
+
+          var pad = { top: 16, right: 20, bottom: 38, left: 54 };
+          var plotW = w - pad.left - pad.right;
+          var plotH = h - pad.top - pad.bottom;
+
+          if (!rows.length) return;
+
+          var maxY = rows.reduce(function (m, r) { return Math.max(m, r.expected_high); }, 0);
+          var minY = rows.reduce(function (m, r) { return Math.min(m, r.expected_low); }, rows[0].expected_low);
+          minY = Math.max(0, Math.floor(minY * 0.9));
+          maxY = Math.ceil(maxY * 1.1);
+          if (maxY <= minY) maxY = minY + 1;
+
+          function x(i) {
+            if (rows.length === 1) return pad.left + plotW / 2;
+            return pad.left + (i / (rows.length - 1)) * plotW;
+          }
+
+          function y(v) {
+            return pad.top + ((maxY - v) / (maxY - minY)) * plotH;
+          }
+
+          // grid lines
+          ctx.strokeStyle = "rgba(59,47,47,0.12)";
+          ctx.lineWidth = 1;
+          for (var g = 0; g <= 4; g += 1) {
+            var gy = pad.top + (g / 4) * plotH;
+            ctx.beginPath();
+            ctx.moveTo(pad.left, gy);
+            ctx.lineTo(pad.left + plotW, gy);
+            ctx.stroke();
+
+            var val = maxY - (g / 4) * (maxY - minY);
+            ctx.fillStyle = "#6d645f";
+            ctx.font = "12px ui-sans-serif, system-ui";
+            ctx.fillText(fmtInt(val), 8, gy + 4);
+          }
+
+          // expected range band
+          ctx.beginPath();
+          ctx.moveTo(x(0), y(rows[0].expected_high));
+          for (var i = 0; i < rows.length; i += 1) {
+            ctx.lineTo(x(i), y(rows[i].expected_high));
+          }
+          for (var j = rows.length - 1; j >= 0; j -= 1) {
+            ctx.lineTo(x(j), y(rows[j].expected_low));
+          }
+          ctx.closePath();
+          ctx.fillStyle = "rgba(181, 140, 149, 0.32)";
+          ctx.fill();
+
+          // forecast line
+          ctx.beginPath();
+          rows.forEach(function (row, idx) {
+            var px = x(idx);
+            var py = y(row.promo_adjusted_forecast);
+            if (idx === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+          });
+          ctx.strokeStyle = "#3b2f2f";
+          ctx.lineWidth = 2.4;
+          ctx.stroke();
+
+          // promo markers
+          rows.forEach(function (row, idx) {
+            if (!row.promo_week) return;
+            var px = x(idx);
+            var py = y(row.promo_adjusted_forecast);
+            ctx.beginPath();
+            ctx.arc(px, py, 4, 0, Math.PI * 2);
+            ctx.fillStyle = "#b58c95";
+            ctx.fill();
+          });
+
+          // x labels (sparse)
+          ctx.fillStyle = "#6d645f";
+          ctx.font = "12px ui-sans-serif, system-ui";
+          var step = Math.ceil(rows.length / 6);
+          rows.forEach(function (row, idx) {
+            if (idx % step !== 0 && idx !== rows.length - 1) return;
+            var dt = row.week_start.slice(5);
+            ctx.fillText(dt, x(idx) - 16, h - 12);
+          });
+        }
+
+        function downloadCsv(rows, metadata) {
+          var headers = [
+            "week_start",
+            "baseline_forecast",
+            "promo_adjusted_forecast",
+            "promo_week",
+            "expected_low",
+            "expected_high",
+            "CV",
+            "promo_lift",
+            "seasonality",
+            "trend"
+          ];
+
+          var csvLines = [headers.join(",")];
+          rows.forEach(function (row) {
+            csvLines.push([
+              row.week_start,
+              Math.round(row.baseline_forecast),
+              Math.round(row.promo_adjusted_forecast),
+              row.promo_week ? "Yes" : "No",
+              Math.round(row.expected_low),
+              Math.round(row.expected_high),
+              fmtOne(metadata.cv),
+              fmtOne(metadata.promoLiftPct),
+              metadata.seasonality,
+              metadata.trend
+            ].join(","));
+          });
+
+          var blob = new Blob([csvLines.join("\n")], { type: "text/csv;charset=utf-8;" });
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.href = url;
+          a.download = "demand_forecast.csv";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        }
+
+        function saveForInventory(rows, metadata) {
+          var payload = {
+            horizon_weeks: metadata.horizon,
+            CV: metadata.cv,
+            rows: rows.map(function (row) {
+              return {
+                week_start: row.week_start,
+                forecast_units: Math.round(row.promo_adjusted_forecast),
+                CV: metadata.cv
+              };
+            })
+          };
+          localStorage.setItem("ecommerce_forecast_manual_v1", JSON.stringify(payload));
+          els.handoffHint.classList.remove("hidden");
+        }
+
+        function runForecast() {
+          var state = getState();
+          var rows = computeForecast(state);
+
+          latestRows = rows;
+          latestMetadata = {
+            cv: state.cv,
+            promoLiftPct: state.promoLift * 100,
+            seasonality: state.seasonality,
+            trend: state.trend,
+            horizon: state.horizon
+          };
+
+          renderSummary(rows);
+          renderTable(rows);
+          renderInsights(rows, state);
+          drawChart(rows);
+        }
+
+        function debounceRun() {
+          if (debounceTimer) {
+            clearTimeout(debounceTimer);
+          }
+          debounceTimer = setTimeout(runForecast, 220);
+        }
+
+        function syncReadouts() {
+          var cv = cvMap[els.demandVariability.value] || cvMap.medium;
+          els.cvReadout.textContent = "CV: " + fmtOne(cv);
+          els.promoLiftReadout.textContent = String(Math.round(Number(els.promoLift.value) || 0)) + "%";
+          var trendNeedsPct = els.trend.value === "growing" || els.trend.value === "declining";
+          els.trendPctWrap.classList.toggle("hidden", !trendNeedsPct);
+        }
+
+        function bindEvents() {
+          [
+            els.avgWeeklyUnits,
+            els.demandVariability,
+            els.horizonWeeks,
+            els.seasonality,
+            els.trend,
+            els.trendPctMonth,
+            els.promoLift
+          ].forEach(function (el) {
+            el.addEventListener("input", function () {
+              if (el === els.horizonWeeks) {
+                rebuildWeekChecklist();
+              }
+              syncReadouts();
+              debounceRun();
+            });
+            el.addEventListener("change", function () {
+              if (el === els.horizonWeeks) {
+                rebuildWeekChecklist();
+              }
+              syncReadouts();
+              debounceRun();
+            });
+          });
+
+          els.weekChecklist.addEventListener("change", debounceRun);
+          els.runForecastBtn.addEventListener("click", runForecast);
+
+          els.downloadCsvBtn.addEventListener("click", function () {
+            if (!latestRows.length || !latestMetadata) return;
+            downloadCsv(latestRows, latestMetadata);
+          });
+
+          els.handoffBtn.addEventListener("click", function () {
+            if (!latestRows.length || !latestMetadata) return;
+            saveForInventory(latestRows, latestMetadata);
+          });
+
+          window.addEventListener("resize", debounceRun);
+        }
+
+        function init() {
+          rebuildWeekChecklist();
+          syncReadouts();
+          bindEvents();
+          runForecast();
+        }
+
+        init();
+      })();
+    </script>
+  </body>
+</html>

@@ -3,312 +3,146 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Katie Linehan | eCommerce & Account Management</title>
+    <title>Kate Linehan | eCommerce &amp; Digital Merchandising Strategist</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
 
-  <body>
-    <!-- Announcement Bar -->
+  <body data-page="index">
     <div class="announcement">
       <div class="container announcement__inner">
         <p>
-          eCOMMERCE + OMNI GROWTH: Curious how AI, platforms, and retail media are
-          changing the rules? <a href="#news">See what I’m watching →</a>
+          <span id="announcementIntro"></span>
+          <a id="announcementLink" href="#" target="_blank" rel="noreferrer"></a>.
         </p>
       </div>
     </div>
 
-    <!-- Nav -->
     <header class="nav">
       <div class="container nav__inner">
-        <div class="brand">KATIE LINEHAN</div>
+        <div class="brand">KATE LINEHAN</div>
 
         <nav class="nav__links" aria-label="Primary">
           <a href="#home">HOME</a>
           <a href="#about">ABOUT</a>
-          <a href="#wins">CAREER WINS</a>
-          <a href="#pet-industry">PET INDUSTRY</a>
-          <a href="#news">NEWS</a>
+          <a href="#selected-work">SELECTED WORK</a>
+          <a href="#growth-framework">GROWTH</a>
+          <a href="#skills-tools">SKILLS</a>
+          <a href="#contact">CONTACT</a>
         </nav>
 
-        <a class="nav__cta" href="#contact">FREE GUIDE</a>
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobileNavMenu"
+          aria-expanded="false"
+        >
+          <span class="nav__toggleLines" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
       </div>
+      <nav id="mobileNavMenu" class="mobileNavMenu" aria-label="Mobile Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#selected-work">Selected Work</a>
+        <a href="#growth-framework">Growth</a>
+        <a href="#skills-tools">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
-    <!-- Hero -->
     <main id="home" class="hero">
       <div class="container hero__inner">
         <div class="hero__copy">
-          <h1 class="hero__headline">
-            What <span class="italic">really</span> works<br />
-            (and what doesn’t) in<br />
-            eCommerce today.
-          </h1>
-
-          <p class="hero__subhead">
-            FROM OMNI ACCOUNT MANAGEMENT TO DIGITAL MERCHANDISING, I HELP TEAMS
-            CUT THROUGH THE NOISE AND BUILD CUSTOMER-FIRST GROWTH PLANS THAT
-            DELIVER.
-          </p>
-
-          <div class="hero__meta">
-            <p class="hero__metaLine">
-              8+ years in Sales & Account Management • 2+ years in Digital
-              Merchandising (Fortune 500)
-            </p>
-            <div class="hero__buttons">
-              <a class="btn btn--primary" href="#about">About Me</a>
-              <a class="btn btn--ghost" href="#wins">View Career Wins</a>
-            </div>
+          <p id="heroName" class="hero__name"></p>
+          <h1 id="heroHeadline" class="hero__headline"></h1>
+          <p id="heroSubhead" class="hero__subhead"></p>
+          <p id="heroMetaLine" class="hero__metaLine"></p>
+          <div class="hero__buttons">
+            <a id="heroSelectedWorkLink" class="btn btn--interview" href="#selected-work"></a>
+            <a id="heroInterviewLink" class="btn btn--ghost" href="#contact"></a>
           </div>
         </div>
 
         <div class="hero__media">
-          <!-- Replace src with your own image path -->
           <div class="photoFrame">
             <img
               class="photo"
-              src="./assets/katie.jpg"
-              alt="Photo of Katie Linehan"
+              src="./Headshot_Katie copy.png"
+              alt="Photo of Kate Linehan"
               loading="eager"
             />
-            <!-- This overlay gives the “same color family” treatment as the left text -->
-            <span class="photoOverlay" aria-hidden="true"></span>
           </div>
         </div>
       </div>
     </main>
 
-    <!-- About -->
-    <section id="about" class="section">
+    <section id="about" class="section section--alt">
       <div class="container section__inner">
-        <h2 class="section__title">About Me</h2>
-        <p class="section__lede">
-          I’m a customer-focused business professional with 8+ years driving
-          growth through insight-led strategy and cross-functional collaboration.
-          I translate data into clear action plans, improve performance, and
-          execute consistently in fast-paced environments.
-        </p>
-
-        <div class="cards">
-          <article class="card">
-            <h3>What I’m known for</h3>
-            <ul>
-              <li>Turning messy inputs into crisp, owned action plans</li>
-              <li>Raising performance through repeatable process + governance</li>
-              <li>Partnering cross-functionally to move metrics (not meetings)</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>Where I’ve done it</h3>
-            <ul>
-              <li>Royal Canin (Mars, Inc.) — Digital Merchandising (eCommerce)</li>
-              <li>Royal Canin — District Veterinary Manager (Outside Sales)</li>
-              <li>W.W. Grainger — Territory Sales Manager</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>What I focus on</h3>
-            <ul>
-              <li>Digital shelf excellence (content, search, onsite)</li>
-              <li>Partner operating plans + retailer-specific strategy</li>
-              <li>Growth levers: conversion, defects, share of search</li>
-            </ul>
-          </article>
-        </div>
+        <h2 id="aboutTitle" class="section__title"></h2>
+        <div id="aboutSummary" class="aboutSummary"></div>
       </div>
     </section>
 
-    <!-- Career Wins -->
-    <section id="wins" class="section section--alt">
+    <section id="selected-work" class="section">
       <div class="container section__inner">
-        <h2 class="section__title">Historical Career Wins</h2>
-
-        <div class="wins">
-          <div class="win">
-            <div class="win__metric">+20%+</div>
-            <div class="win__text">
-              Conversion growth across ~300 SKUs by tightening PIM/content
-              standards and implementing quality controls.
-            </div>
-          </div>
-
-          <div class="win">
-            <div class="win__metric">-15%</div>
-            <div class="win__text">
-              Defect reduction through repeatable workflows, issue triage, and
-              preventing recurring errors.
-            </div>
-          </div>
-
-          <div class="win">
-            <div class="win__metric">60% → 99%</div>
-            <div class="win__text">
-              Raised Chewy digital shelf KPI performance by coordinating fixes
-              across teams and improving governance.
-            </div>
-          </div>
-
-          <div class="win">
-            <div class="win__metric">2×</div>
-            <div class="win__text">
-              Doubled Share of Search in 3 months by building retailer-specific
-              plans and prioritizing updates via performance data.
-            </div>
-          </div>
-
-          <div class="win">
-            <div class="win__metric">+69%</div>
-            <div class="win__text">
-              Grew online pharmacy sales across Arizona by focusing on top
-              accounts, monitoring trends, and executing disciplined plans.
-            </div>
-          </div>
-
-          <div class="win">
-            <div class="win__metric">+15.5% YoY</div>
-            <div class="win__text">
-              Led a data-driven territory pilot over four years; created a
-              playbook later scaled nationally.
-            </div>
-          </div>
-
-          <div class="win">
-            <div class="win__metric">$600K</div>
-            <div class="win__text">
-              Generated $600K in 5 months at Grainger through pipeline rigor and
-              customer-first execution.
-            </div>
-          </div>
-        </div>
+        <h2 id="selectedWorkTitle" class="section__title"></h2>
+        <div id="selectedWorkCards" class="selectedWorkGrid"></div>
       </div>
     </section>
 
-    <!-- Hobbies -->
-    <section id="hobbies" class="section">
+    <section id="growth-framework" class="section">
       <div class="container section__inner">
-        <h2 class="section__title">Hobbies</h2>
-        <p class="section__lede">
-          Add yours here (keep it short + warm — it humanizes you).
-        </p>
-
-        <div class="chips">
-          <span class="chip">Pilates / walking</span>
-          <span class="chip">Healthy baking</span>
-          <span class="chip">Product discovery</span>
-          <span class="chip">Podcasts (health + business)</span>
-          <span class="chip">Trying new cafés</span>
-          <span class="chip">Home organization</span>
-        </div>
+        <h2 id="growthFrameworkTitle" class="section__title"></h2>
+        <p id="growthFrameworkIntro" class="section__lede"></p>
+        <ol id="growthFrameworkList" class="growthFrameworkList"></ol>
+        <p id="growthFrameworkOutro" class="section__lede"></p>
       </div>
     </section>
 
-    <!-- Pet Industry -->
-    <section id="pet-industry" class="section section--alt">
+    <section id="skills-tools" class="section section--alt">
       <div class="container section__inner">
-        <h2 class="section__title">How to Get Into the Pet Industry</h2>
-
-        <div class="cards">
-          <article class="card">
-            <h3>Pick your lane</h3>
-            <ul>
-              <li>CPG (food, treats, supplements)</li>
-              <li>Retail (Chewy, Amazon, big box)</li>
-              <li>Services (vet, grooming, insurance)</li>
-              <li>Tech (data, subscriptions, platforms)</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>Build proof fast</h3>
-            <ul>
-              <li>Show you can grow a category or partner account</li>
-              <li>Bring a digital shelf POV (content + search + conversion)</li>
-              <li>Know retail media basics + measurement</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>Speak the language</h3>
-            <ul>
-              <li>Humanization + premiumization</li>
-              <li>Subscription/Autoship economics</li>
-              <li>Compliance/regulatory awareness</li>
-              <li>Omni retail + marketplace dynamics</li>
-            </ul>
-          </article>
-        </div>
-
-        <div id="pet-history" class="petHistory">
-          <h3 class="section__subtitle">Pet Industry: What Changed in the Last Decade</h3>
-          <ul class="bullets">
-            <li><strong>Premiumization:</strong> consumers trading up to higher quality nutrition and functional products.</li>
-            <li><strong>Humanization:</strong> pets treated like family → more spend on wellness and specialty care.</li>
-            <li><strong>eCommerce + Autoship:</strong> repeat delivery became a core growth engine for brands and retailers.</li>
-            <li><strong>Retail media:</strong> sponsored search + onsite placement became critical to visibility.</li>
-            <li><strong>Data-driven shelf:</strong> content, availability, defects, and ratings became performance levers.</li>
-            <li><strong>Vet + online pharmacy:</strong> growing integration of clinics, services, and digital fulfillment.</li>
-          </ul>
-        </div>
+        <h2 id="skillsToolsTitle" class="section__title"></h2>
+        <div id="skillsToolsGroups" class="skillsToolsGrid"></div>
       </div>
     </section>
 
-    <!-- News -->
-    <section id="news" class="section">
+    <section id="contact" class="section">
       <div class="container section__inner">
-        <h2 class="section__title">News I’m Watching</h2>
-        <p class="section__lede">
-          A short list of pieces shaping how I think about eCommerce, AI, and the
-          future of distribution.
-        </p>
-
-        <div class="linkCards">
+        <h2 id="contactTitle" class="section__title"></h2>
+        <p id="contactLede" class="section__lede"></p>
+        <div class="contactActions">
           <a
-            class="linkCard"
-            href="https://www.retaildive.com/news/retails-ai-bet-risks-data-market-share/810202/"
+            id="contactLinkedInLink"
+            class="contactLinkedIn"
+            href="#"
             target="_blank"
             rel="noreferrer"
-          >
-            <span class="linkCard__kicker">RetailDive</span>
-            <span class="linkCard__title">Retail’s AI bet: risks to data + market share</span>
-            <span class="linkCard__cta">Read →</span>
-          </a>
-
+          ></a>
+          <a id="contactEmailLink" class="contactLinkedIn" href="#"></a>
           <a
-            class="linkCard"
-            href="https://finance.yahoo.com/news/cloudflare-just-changed-ai-crawlers-100000348.html"
+            id="contactResumeLink"
+            class="btn btn--ghost"
+            href="#"
             target="_blank"
             rel="noreferrer"
-          >
-            <span class="linkCard__kicker">Yahoo Finance</span>
-            <span class="linkCard__title">Cloudflare changed how AI crawlers access the web</span>
-            <span class="linkCard__cta">Read →</span>
-          </a>
+            hidden
+          ></a>
         </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section section--alt">
-      <div class="container section__inner">
-        <h2 class="section__title">Contact</h2>
-        <p class="section__lede">
-          Want to talk eCommerce growth, digital shelf strategy, or partner plans?
-        </p>
-        <a class="btn btn--primary" href="mailto:linehank140@gmail.com">Email Me</a>
       </div>
     </section>
 
     <footer class="footer">
       <div class="container footer__inner">
-        <span>© <span id="year"></span> Katie Linehan</span>
+        <span>(c) <span id="year"></span> <span id="footerName">Katie Linehan</span></span>
       </div>
     </footer>
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+    <script src="./content.js"></script>
+    <script src="./platform.js"></script>
   </body>
 </html>
