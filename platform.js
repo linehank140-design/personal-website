@@ -262,20 +262,6 @@
     );
     setAnchor("contactEmailLink", contact.emailLabel || "Email", emailHref);
 
-    var resumeLink = document.getElementById("contactResumeLink");
-    if (resumeLink) {
-      var resumeUrl = (contact.resumeUrl || "").trim();
-      if (resumeUrl) {
-        resumeLink.hidden = false;
-        resumeLink.href = resumeUrl;
-        resumeLink.textContent = contact.resumeLabel || "Download Resume";
-      } else {
-        resumeLink.hidden = true;
-        resumeLink.href = "#";
-        resumeLink.textContent = "";
-      }
-    }
-
     setTextContent("aboutTitle", about.title || "");
     renderParagraphs("aboutSummary", about.paragraphs || []);
 
