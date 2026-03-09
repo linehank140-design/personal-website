@@ -131,28 +131,28 @@ window.siteContentDefaults = {
   },
   about: {
     title: "Katie Linehan | About",
-    pageTitle: "About Katie",
+    pageTitle: "About Me",
     subhead:
-      "Ecommerce Growth | Digital Merchandising | Cross-Functional Commercial Strategy",
+      "Operator mindset | Creative discipline | Personal systems for growth",
     introParagraphs: [
-      "I am a warm, direct ecommerce operator with a consistent record of driving measurable online growth.",
-      "I started by helping veterinary practices grow online pharmacy revenue, bringing a practical commercial mindset to digital channels early in my career. I later scaled that impact at Chewy.com, where I consistently exceeded revenue targets in a highly competitive ecommerce environment.",
-      "Most recently, I have focused on digital merchandising within a high-matrix organization, building fluency in forecasting and the S&OP process while helping cross-functional teams turn insight into sustainable growth."
+      "I build ecommerce growth by combining structured execution with practical creativity. I care about what works, why it works, and whether a team can sustain it after launch.",
+      "My career started in pet health and online pharmacy growth, then expanded into digital merchandising and cross-functional operations at scale. That path taught me how to connect planning, content, demand, and commercial goals without overcomplicating the work.",
+      "I am known for being clear, dependable, and action-oriented. I like turning noisy inputs into straightforward priorities teams can actually deliver against."
     ],
-    selectedImpactTitle: "Selected Impact",
+    selectedImpactTitle: "Selected Wins",
     selectedImpactItems: [
-      "Exceeded revenue targets on Chewy.com through disciplined commercial execution",
-      "Drove online pharmacy growth across veterinary accounts",
-      "Built forecast fluency and strengthened S&OP alignment within a matrixed organization",
-      "Improved cross-functional coordination across merchandising, marketing, and supply chain"
+      "Exceeded revenue targets on Chewy.com through focused account execution",
+      "Grew online pharmacy adoption by prioritizing high-potential veterinary partners",
+      "Improved digital shelf performance across 300+ SKUs through content and process alignment",
+      "Strengthened S&OP and forecasting collaboration across merchandising, marketing, and supply chain"
     ],
-    growthTitle: "How I Drive Growth",
+    growthTitle: "How I Work",
     growthParagraphs: [
-      "I approach ecommerce as an ecosystem, not a channel.",
-      "To me, digital merchandising connects forecasting accuracy, marketing cadence, supply chain realities, and customer behavior. Sustainable growth happens when those systems are aligned with clarity, accountability, and strong cross-functional partnership."
+      "I treat ecommerce like an operating system, not a campaign calendar.",
+      "My best work happens where strategy meets execution: clear priorities, good instrumentation, fast feedback loops, and strong follow-through."
     ],
     growthQuote:
-      "Growth is rarely about one tactic; it is about disciplined alignment across systems.",
+      "Sustainable growth is usually the result of consistent systems, not one heroic tactic.",
     crossFunctionalTitle: "Cross-Functional Experience",
     crossFunctionalItems: [
       "Shopper marketing",
@@ -163,24 +163,49 @@ window.siteContentDefaults = {
       "Demand planning"
     ],
     crossFunctionalSupport:
-      "My strength lies in translating data into commercial action and aligning stakeholders around shared performance objectives.",
+      "I translate analytics into commercial action and keep teams aligned around shared outcomes.",
     knownForTitle: "What I am Known For",
     knownForItems: [
       "Clear, direct communication",
-      "Calm execution in high-matrix environments",
-      "Translating complexity into actionable plans",
-      "Driving accountability without friction"
+      "Calm execution under ambiguity",
+      "Turning complexity into practical plans",
+      "Building accountability without drama"
     ],
     currentlyTitle: "Currently",
     currentlyText:
-      "I am continuing to deepen my expertise in ecommerce optimization, AI-enabled digital strategy, and scalable omnichannel growth models.",
+      "I am focused on ecommerce optimization, AI-ready content strategy, and scalable operating rhythms that help teams move faster with better decisions.",
     outsideTitle: "Outside of Work",
     outsideParagraphs: [
-      "Outside of work, you will usually find me on a hike with my labradoodle, Otto (if he agrees to join).",
-      "At home, he is a professional napper, and somehow always ends up in the most ridiculous sleep positions."
+      "Outside of work, I reset through movement, good coffee, and long walks with my labradoodle, Otto (when he is in the mood).",
+      "I am happiest when I am balancing ambitious goals with a little humor, solid routines, and time outdoors."
+    ],
+    hobbiesTitle: "Hobbies, Arranged",
+    hobbiesHook:
+      "I organize my hobbies the same way I organize projects: by energy, setting, and what they help me recharge.",
+    hobbies: [
+      {
+        label: "Outdoor Reset",
+        description:
+          "Hiking, neighborhood walks, and low-pressure adventure days with Otto. This is my go-to for clearing my head and getting fresh perspective."
+      },
+      {
+        label: "Creative Focus",
+        description:
+          "Writing, content sketching, and visual idea mapping. I like taking messy thoughts and turning them into something useful and clear."
+      },
+      {
+        label: "At-Home Recharge",
+        description:
+          "Cooking, music, and intentionally slow evenings. This is where I refuel and create space to think long-term."
+      },
+      {
+        label: "Social Energy",
+        description:
+          "Catching up with friends and family, trying new spots, and conversations that sharpen ideas. People keep me grounded and inspired."
+      }
     ],
     galleryTitle: "Sleep Positions: A Case Study",
-    galleryNote: "A small collection of evidence. More coming soon.",
+    galleryNote: "Otto's finest work. Compiled with scientific rigor and zero objectivity.",
     galleryItems: [
       {
         imageClass: "aboutPhotoImage--1",
@@ -200,7 +225,7 @@ window.siteContentDefaults = {
       }
     ],
     ctaText:
-      "If your team is hiring for ecommerce growth and needs someone who can align teams and drive measurable results, I would love to connect.",
+      "If you are building an ecommerce team and want someone who can connect strategy to execution, I would love to connect.",
     ctaLabel: "Let's connect"
   },
   petIndustry: {

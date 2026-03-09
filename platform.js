@@ -163,6 +163,62 @@
       .join("");
   }
 
+  function renderHobbyChips(chipsId, descriptionId, hobbies) {
+    var chipsContainer = document.getElementById(chipsId);
+    var description = document.getElementById(descriptionId);
+    if (!chipsContainer || !description) {
+      return;
+    }
+
+    if (!Array.isArray(hobbies) || !hobbies.length) {
+      chipsContainer.innerHTML = "";
+      description.textContent = "";
+      description.style.display = "none";
+      return;
+    }
+
+    description.style.display = "";
+    var activeIndex = 0;
+
+    function updateActiveState() {
+      var buttons = chipsContainer.querySelectorAll(".chip");
+      buttons.forEach(function onEachButton(button, index) {
+        button.classList.toggle("active", index === activeIndex);
+      });
+
+      var activeHobby = hobbies[activeIndex] || {};
+      description.textContent = activeHobby.description || "";
+    }
+
+    chipsContainer.innerHTML = hobbies
+      .map(function toChip(hobby, index) {
+        var isActive = index === activeIndex ? " active" : "";
+        return (
+          "<button type=\"button\" class=\"chip" +
+          isActive +
+          "\" data-hobby-index=\"" +
+          index +
+          "\">" +
+          escapeHtml(hobby.label || "") +
+          "</button>"
+        );
+      })
+      .join("");
+
+    chipsContainer.querySelectorAll(".chip").forEach(function onChipClick(button) {
+      button.addEventListener("click", function onClick() {
+        var nextIndex = Number(button.getAttribute("data-hobby-index"));
+        if (Number.isNaN(nextIndex)) {
+          return;
+        }
+        activeIndex = nextIndex;
+        updateActiveState();
+      });
+    });
+
+    updateActiveState();
+  }
+
   function applySharedContent(content) {
     var globalContent = (content && content.global) || {};
     var announcement = globalContent.announcement || {};
@@ -372,6 +428,17 @@
 
     setTextContent("aboutOutsideTitle", about.outsideTitle || "");
     renderParagraphs("aboutOutsideParagraphs", about.outsideParagraphs || []);
+
+    var hobbiesTitle = about.hobbiesTitle || aboutDefaults.hobbiesTitle || "";
+    var hobbiesHook = about.hobbiesHook || aboutDefaults.hobbiesHook || "";
+    var hobbies =
+      Array.isArray(about.hobbies) && about.hobbies.length
+        ? about.hobbies
+        : (Array.isArray(aboutDefaults.hobbies) ? aboutDefaults.hobbies : []);
+
+    setTextContent("aboutHobbiesTitle", hobbiesTitle);
+    setTextContent("aboutHobbiesHook", hobbiesHook);
+    renderHobbyChips("aboutHobbiesChips", "aboutHobbyDescription", hobbies);
 
     var galleryTitle = about.galleryTitle || aboutDefaults.galleryTitle || "";
     var galleryNote = about.galleryNote || aboutDefaults.galleryNote || "";
