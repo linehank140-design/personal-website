@@ -339,6 +339,7 @@
 
   function renderAboutPage(content) {
     var about = (content && content.about) || {};
+    var aboutDefaults = (getDefaults().about) || {};
 
     if (about.title) {
       document.title = about.title;
@@ -372,12 +373,19 @@
     setTextContent("aboutOutsideTitle", about.outsideTitle || "");
     renderParagraphs("aboutOutsideParagraphs", about.outsideParagraphs || []);
 
-    setTextContent("aboutGalleryTitle", about.galleryTitle || "");
-    setTextContent("aboutGalleryNote", about.galleryNote || "");
+    var galleryTitle = about.galleryTitle || aboutDefaults.galleryTitle || "";
+    var galleryNote = about.galleryNote || aboutDefaults.galleryNote || "";
+    var galleryItems =
+      Array.isArray(about.galleryItems) && about.galleryItems.length
+        ? about.galleryItems
+        : (Array.isArray(aboutDefaults.galleryItems) ? aboutDefaults.galleryItems : []);
+
+    setTextContent("aboutGalleryTitle", galleryTitle);
+    setTextContent("aboutGalleryNote", galleryNote);
 
     var galleryGrid = document.getElementById("aboutGalleryGrid");
-    if (galleryGrid && Array.isArray(about.galleryItems)) {
-      galleryGrid.innerHTML = about.galleryItems
+    if (galleryGrid && Array.isArray(galleryItems)) {
+      galleryGrid.innerHTML = galleryItems
         .map(function toGalleryCard(item) {
           return (
             "<figure class=\"aboutPhotoCard\">" +
