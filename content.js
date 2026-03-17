@@ -1,9 +1,9 @@
 window.siteContentDefaults = {
   global: {
     announcement: {
-      intro: "AI + platform shifts are reshaping eCommerce and retail media. Reading now:",
-      linkText: "Cloudflare changed how AI crawlers access the web",
-      linkUrl: "https://finance.yahoo.com/news/cloudflare-just-changed-ai-crawlers-100000348.html"
+      intro: "",
+      linkText: "Hiring for ecommerce growth? See how I increased online pharmacy revenue +69%",
+      linkUrl: "./selected-work.html#selected-work-top"
     },
     contact: {
       email: "linehank140@gmail.com",
@@ -15,114 +15,269 @@ window.siteContentDefaults = {
     title: "Kate Linehan | eCommerce & Digital Merchandising Strategist",
     hero: {
       name: "Kate Linehan",
-      headlineHtml: "eCommerce & Digital Merchandising Strategist",
+      headlineHtml: "Helping CPG brands grow online and drive stronger business results",
       subhead:
-        "I help brands grow online by improving digital shelf performance, strengthening content strategy, and turning cross-functional insights into clear commercial action.",
+        "I partner across sales, marketing, and ecommerce teams to improve digital performance, uncover growth opportunities, and translate insights into actions that support revenue, conversion, and the bottom line.",
       bestFit:
-        "8+ years of experience across Mars / Royal Canin, ecommerce merchandising, therapeutic nutrition, territory growth, and partner development.",
-      selectedWorkButtonLabel: "View Selected Work",
+        "8+ years of experience across ecommerce merchandising, therapeutic nutrition, territory growth, and partner development.",
+      selectedWorkButtonLabel: "View Case Studies",
       interviewButtonLabel: "Let's Connect"
     },
     about: {
       title: "About",
       paragraphs: [
-        "I'm an ecommerce and pet health professional with 8+ years of experience across digital merchandising, therapeutic nutrition, and commercial growth. My background includes improving digital shelf performance, growing online pharmacy adoption, leading cross-functional initiatives, and translating data into actionable plans.",
-        "I've worked across highly matrixed organizations and retail environments, partnering with sales, marketing, category, and operations teams to improve visibility, conversion, and execution. Recent work has included 20%+ conversion growth and 15% defect reduction across 300 SKUs, doubling Share of Search in 3 months, and improving Chewy digital shelf KPI performance from 60% to 99%."
+        "Results-driven ecommerce professional with 8+ years of experience across sales, digital merchandising, and online growth strategy. Proven ability to optimize digital shelf performance, improve conversion, and partner cross-functionally to turn insights into actionable plans that drive sales."
       ]
     },
-    selectedWork: {
-      title: "Selected Work",
-      cards: [
+    keyResults: {
+      title: "Impact Highlights",
+      learnMoreLabel: "Learn More",
+      learnMoreUrl: "./selected-work.html#selected-work-top",
+      metrics: [
         {
-          title: "Improving Search Visibility Across Retailers",
-          body:
-            "Led an agency partnership focused on improving organic search visibility across major ecommerce retailers. Identified shopper search behavior trends and aligned product titles, attributes, and content to better match how customers search online. This work strengthened product discoverability and improved digital shelf performance across key retail environments.",
-          support:
-            "Focused on search visibility, SEO-friendly content structure, and retailer-specific optimization."
+          icon: "📈",
+          value: "+69%",
+          label: "Online pharmacy revenue growth"
         },
         {
-          title: "Optimizing Product Content for SEO & AI Discovery",
-          body:
-            "Improved product detail page content to strengthen both traditional SEO and emerging AI-driven discovery. Focused on clearer product descriptions, stronger attribute structure, and language that better aligned with how shoppers and recommendation systems interpret product relevance.",
-          support:
-            "Included title optimization, attribute improvements, and content enhancements built for discoverability."
+          icon: "🛒",
+          value: "+20%",
+          label: "Digital shelf conversion improvement"
         },
         {
-          title: "Driving Online Pharmacy Adoption Through Strategic Account Focus",
-          body:
-            "Developed a focused account strategy to grow online pharmacy adoption across Arizona by identifying five high-impact veterinary accounts with the strongest growth potential. Concentrating effort on a smaller set of strategic partners enabled deeper engagement, stronger implementation support, and more effective long-term account growth.",
-          support: "Contributed to +69% online pharmacy sales growth across Arizona."
+          icon: "📦",
+          value: "300+",
+          label: "SKUs optimized across top retailers"
+        },
+        {
+          icon: "🏥",
+          value: "Multi-Million",
+          label: "Managed a multi-million-dollar veterinary territory"
         }
       ]
     },
-    growthFramework: {
-      title: "How I Think About eCommerce Growth",
+    caseStudies: {
+      title: "Selected Work",
       intro:
-        "When evaluating an ecommerce growth opportunity, I typically focus on three areas:",
+        "A few examples of how I drive ecommerce growth through digital shelf optimization, shopper-friendly content, and strategic account focus.",
+      backToTopLabel: "Back to top",
       items: [
         {
-          label: "Visibility",
-          detail:
-            "Are products appearing in the right search placements, category paths, and retailer experiences where shoppers are most likely to discover them?"
+          title: "🛒 Digital Shelf Optimization",
+          subtitle: "Amazon, Chewy & top ecommerce retailers | 300+ SKUs",
+          challenge:
+            "Product pages had inconsistent titles, attributes, and images, which hurt search visibility and conversion.",
+          focus: [
+            "Standardizing titles and attributes",
+            "Improving imagery and content completeness",
+            "Supporting SEO and keyword alignment",
+            "Monitoring content health and defects"
+          ],
+          impact: [
+            "+20%+ conversion across top SKUs",
+            "-15% defects across the digital shelf",
+            "Stronger discoverability across major retailers"
+          ],
+          whyItMattered:
+            "Small content improvements can create major gains in visibility and conversion at scale."
         },
         {
-          label: "Conversion Drivers",
-          detail:
-            "Are content, images, titles, reviews, and product detail pages doing enough to turn traffic into purchases?"
+          title: "📈 Online Pharmacy Growth Strategy",
+          subtitle: "Arizona veterinary clinics",
+          challenge:
+            "Many clinics had online pharmacy platforms but were not actively using or promoting them, leaving recurring revenue on the table.",
+          focus: [
+            "Prioritizing 5 high-potential clinics",
+            "Training teams on digital prescription workflows",
+            "Helping clinics position ecommerce as a growth driver",
+            "Leading business reviews and growth planning"
+          ],
+          impact: [
+            "+69% online pharmacy revenue across Arizona",
+            "Stronger partner relationships",
+            "Increased ecommerce adoption in veterinary practices"
+          ],
+          whyItMattered:
+            "Ecommerce growth often depends on operational adoption, not just having the technology in place."
         },
         {
-          label: "Operational Readiness",
-          detail:
-            "Are inventory, pricing, and cross-functional execution aligned to support sustainable growth once traffic reaches the page?"
+          title: "🔎 Pet-Parent Search Language Optimization",
+          subtitle: "Veterinary diet product pages",
+          challenge:
+            "Some product names used internal or clinical shorthand that was less clear to pet parents shopping online.",
+          examples: [
+            "Selected Protein PR → Selected Protein Potato & Rabbit",
+            "Loaf → Pâté"
+          ],
+          focus: [
+            "Replacing shorthand with shopper-friendly language",
+            "Making titles easier to understand at a glance",
+            "Aligning content to natural search behavior",
+            "Improving product clarity for pet parents"
+          ],
+          impact: [
+            "Better clarity for shoppers",
+            "Stronger alignment with natural-language search",
+            "Improved discoverability on retailer sites"
+          ],
+          whyItMattered:
+            "The best ecommerce content answers the shopper's question immediately."
         }
-      ],
-      outro:
-        "The strongest ecommerce performance happens when visibility, conversion, and execution work together."
+      ]
     },
-    skillsTools: {
-      title: "Skills & Tools",
+    platformsRetailers: {
+      title: "Platforms, Retailers & Tools",
+      lede: "Retailers, platforms, and tools where I've driven ecommerce growth and digital shelf performance.",
       groups: [
         {
-          title: "Digital & Ecommerce",
+          title: "Retailers",
+          items: [
+            { name: "Amazon", logo: "https://logo.clearbit.com/amazon.com" },
+            { name: "Chewy", logo: "https://logo.clearbit.com/chewy.com" },
+            { name: "Pet Supplies Plus", logo: "https://logo.clearbit.com/petsuppliesplus.com" },
+            { name: "PetSmart", logo: "https://logo.clearbit.com/petsmart.com" },
+            { name: "Covetrus", logo: "https://logo.clearbit.com/covetrus.com" },
+            { name: "Vetsource", logo: "https://logo.clearbit.com/vetsource.com" }
+          ]
+        },
+        {
+          title: "Brands / Industry",
+          items: [
+            { name: "Royal Canin", logo: "https://logo.clearbit.com/royalcanin.com" },
+            { name: "Mars", logo: "https://logo.clearbit.com/mars.com" },
+            { name: "Grainger Industrial", logo: "https://logo.clearbit.com/grainger.com" },
+            { name: "MRO Industry" },
+            { name: "Veterinary Industry" }
+          ]
+        },
+        {
+          title: "Tools",
+          items: [
+            { name: "Salsify", logo: "https://logo.clearbit.com/salsify.com" },
+            { name: "Salesforce", logo: "https://logo.clearbit.com/salesforce.com" },
+            { name: "Similarweb", logo: "https://logo.clearbit.com/similarweb.com" }
+          ]
+        }
+      ]
+    },
+    industryReading: {
+      title: "Articles I'm Reading Right Now",
+      lede:
+        "A few pieces I think are especially relevant right now for ecommerce, discovery, and digital shelf strategy.",
+      cards: [
+        {
+          theme: "shopping-ai",
+          title: "New tech and tools for retailers to succeed in an agentic shopping era",
+          summary:
+            "Google announced an open protocol and new AI commerce tools to help retailers reach high-intent shoppers across conversational and agent-led shopping flows.",
+          source: "Google Ads & Commerce Blog",
+          date: "Jan 11, 2026",
+          cta: "Read article",
+          url: "https://blog.google/products/ads-commerce/agentic-commerce-ai-tools-protocol-retailers-platforms/"
+        },
+        {
+          theme: "cloudflare",
+          title: "Cloudflare's New Control for AI Crawlers",
+          summary:
+            "Cloudflare introduced a setting that lets publishers choose whether AI crawlers can access their content by default. This could reshape how product content is discovered and syndicated across AI surfaces.",
+          source: "Cloudflare",
+          date: "July 1, 2025",
+          cta: "Read article",
+          url: "https://blog.cloudflare.com/introducing-pay-per-crawl/"
+        },
+        {
+          theme: "shopping-ai",
+          title: "Google Expands AI-Powered Shopping Experiences",
+          summary:
+            "Google announced AI Mode shopping updates that blend product data with conversational discovery and checkout guidance. This is a signal that structured product content quality will matter even more.",
+          source: "Google Blog",
+          date: "March 5, 2025",
+          cta: "Read article",
+          url: "https://blog.google/products/shopping/new-way-to-shop-with-ai-mode/"
+        }
+      ]
+    },
+    capabilitiesTools: {
+      title: "Capabilities, Tools & Learning",
+      groups: [
+        {
+          title: "Digital Shelf & Ecommerce",
           items: [
             "Digital Shelf Optimization",
-            "Organic Search Visibility",
-            "Retailer Content Strategy",
-            "Product Detail Page Optimization",
-            "SEO-Oriented Content",
-            "AI-Ready Content Strategy",
+            "Ecommerce SEO & Search Visibility",
+            "Product Detail Page Strategy",
+            "Retail Content & Attribute Optimization",
             "Onsite Merchandising",
-            "Ecommerce Governance"
-          ]
+            "AI-Ready Content Strategy"
+          ],
+          format: "list"
         },
         {
           title: "Commercial & Strategic",
           items: [
             "Cross-Functional Planning",
+            "Ecommerce Growth Strategy",
             "Account Prioritization",
-            "Business Reviews",
-            "Growth Strategy",
-            "Agency Management",
-            "Territory Planning",
-            "Adoption & Implementation Support"
-          ]
+            "Business Reviews & Performance Insights",
+            "Territory & Partner Strategy",
+            "Agency & Vendor Management"
+          ],
+          format: "list"
         },
         {
           title: "Analytics & Tools",
           items: [
             "Excel",
             "Power BI",
-            "PivotTables",
-            "Performance Reporting",
-            "Search / Content Analysis"
-          ]
+            "Pivot Tables",
+            "Search & Content Analysis",
+            "Performance Reporting"
+          ],
+          format: "tags"
+        }
+      ]
+    },
+    coursesCertifications: {
+      title: "Courses & Certifications",
+      items: [
+        {
+          title: "SEO for Ecommerce",
+          provider: "HubSpot Academy",
+          completionYear: "2025",
+          description:
+            "Focused on technical and on-page SEO tactics tailored to ecommerce category pages, PDPs, and discoverability across search and AI-assisted experiences.",
+          certificationUrl: "https://academy.hubspot.com/"
+        },
+        {
+          title: "Google Analytics Certification",
+          provider: "Google",
+          completionYear: "2024",
+          description:
+            "Covered GA4 reporting, event-based measurement, attribution views, and practical analysis frameworks to improve ecommerce conversion decisions.",
+          certificationUrl: "https://skillshop.withgoogle.com/"
+        },
+        {
+          title: "AI for Marketing",
+          provider: "Coursera",
+          completionYear: "2025",
+          description:
+            "Explored AI-powered marketing workflows, prompt strategy, content operations, and experimentation methods for modern digital teams.",
+          certificationUrl: "https://www.coursera.org/"
+        },
+        {
+          title: "Digital Merchandising",
+          provider: "Ecommerce Institute",
+          completionYear: "2024",
+          description:
+            "Covered digital shelf fundamentals, taxonomy strategy, merchandising performance levers, and retailer execution best practices.",
+          certificationUrl: "https://ecommerceinstitute.org/"
         }
       ]
     },
     contact: {
-      title: "Let's Connect",
+      title: "Contact / LinkedIn",
       lede:
-        "I'm always interested in connecting with teams and leaders working at the intersection of ecommerce, digital merchandising, strategy, and brand growth.",
+        "If you're hiring for ecommerce growth, digital merchandising, or digital shelf leadership, I'd be glad to connect.",
       linkedInLabel: "LinkedIn",
       emailLabel: "Email",
       resumeLabel: "Download Resume",
@@ -179,33 +334,35 @@ window.siteContentDefaults = {
       "Outside of work, I reset through movement, good coffee, and long walks with my labradoodle, Otto (when he is in the mood).",
       "I am happiest when I am balancing ambitious goals with a little humor, solid routines, and time outdoors."
     ],
-    hobbiesTitle: "Hobbies, Arranged",
+    hobbiesTitle: "Life Outside the Digital Shelf",
     hobbiesHook:
-      "I organize my hobbies the same way I organize projects: by energy, setting, and what they help me recharge.",
+      "A few hobbies that keep me creative, energized, and laughing.",
     hobbies: [
       {
-        label: "Outdoor Reset",
+        label: "Watercolor",
         description:
-          "Hiking, neighborhood walks, and low-pressure adventure days with Otto. This is my go-to for clearing my head and getting fresh perspective."
+          "This is a relatively new hobby for me and I definitely have not perfected it yet -- some of my paintings still look like a third grader made them. But I completely fell in love with how watercolor moves across the paper. There is something really calming about watching colors spread and blend in ways you cannot fully control."
       },
       {
-        label: "Creative Focus",
+        label: "F45 Workouts",
         description:
-          "Writing, content sketching, and visual idea mapping. I like taking messy thoughts and turning them into something useful and clear."
+          "One of my favorite parts of the day. My husband and I go to F45 together in the morning and it is something we genuinely look forward to. It is the best way to start the day feeling energized, focused, and set up for success."
       },
       {
-        label: "At-Home Recharge",
+        label: "Healthy Desserts",
         description:
-          "Cooking, music, and intentionally slow evenings. This is where I refuel and create space to think long-term."
+          "I am slightly obsessed with making better-for-you desserts. People keep telling me there is no such thing as a healthy dessert, but I am determined to prove them wrong."
       },
       {
-        label: "Social Energy",
+        label: "Otto Adventures",
         description:
-          "Catching up with friends and family, trying new spots, and conversations that sharpen ideas. People keep me grounded and inspired."
+          "I love spending time with my labradoodle Otto and taking him on hikes when he is in the mood. Unfortunately he is also part cocker spaniel, which means lounging is often his preferred activity. When we do go on walks, I am usually the one convincing him it is a good idea."
       }
     ],
-    galleryTitle: "Sleep Positions: A Case Study",
-    galleryNote: "Otto's finest work. Compiled with scientific rigor and zero objectivity.",
+    galleryTitle: "Otto's Sleep Positions: A Cozy Field Study",
+    gallerySubtitle:
+      "Otto's research focuses on maximizing couch coverage. Early results suggest the pillow is a strong performer.",
+    galleryNote: "Years of experimentation have led to several promising sleep position variants.",
     galleryItems: [
       {
         imageClass: "aboutPhotoImage--1",
@@ -287,6 +444,109 @@ window.siteContentDefaults = {
         label: "Vet + online pharmacy",
         detail:
           "growing integration of clinics, services, and digital fulfillment."
+      }
+    ]
+  },
+  blog: {
+    title: "Kate Linehan | Resources",
+    pageTitle: "Resources",
+    lede:
+      "A running list of helpful websites and resources I use for AI, search, ecommerce, and pet industry insights.",
+    discoverabilityTitle: "How this page supports AEO, SEO, and GEO",
+    discoverabilityLede:
+      "This hub is structured for people and AI systems: clear topics, concise summaries, and trusted sources that are easy to crawl, cite, and use.",
+    discoverabilityChecklist: [
+      "Answer-first summaries to improve extractability for AI assistants and answer engines.",
+      "Topic clustering across AI, Search, Ecommerce, and Pet Industry for stronger semantic relevance.",
+      "Credible source links and recurring updates to increase trust and citation potential."
+    ],
+    faqTitle: "Resource hub FAQ",
+    faqItems: [
+      {
+        question: "What is AEO and how is it different from SEO?",
+        answer:
+          "AEO focuses on structuring content so answer engines can return direct responses, while SEO focuses on ranking pages in traditional search results."
+      },
+      {
+        question: "How does GEO fit with SEO and AEO?",
+        answer:
+          "GEO focuses on making content easy for generative engines to understand and cite, complementing SEO visibility and AEO answer quality."
+      },
+      {
+        question: "How should I use these resources?",
+        answer:
+          "Start with one topic cluster, turn key ideas into test plans, and measure impact on discoverability metrics such as impressions, rankings, and conversions."
+      }
+    ],
+    filters: ["AI", "Search", "Ecommerce", "Pet Industry"],
+    ecommerceTitle: "Ecommerce Resources",
+    ecommerceResources: [
+      {
+        source: "Shopify",
+        title: "Shopify Retail Blog",
+        summary: "Tactical playbooks for conversion, retention, and merchandising.",
+        cta: "Read resource",
+        topics: ["Ecommerce"],
+        url: "https://www.shopify.com/blog/topics/retail"
+      },
+      {
+        source: "Think with Google",
+        title: "Consumer and Shopping Insights",
+        summary: "Research and trend data on shopping behavior and digital channels.",
+        cta: "Read resource",
+        topics: ["Ecommerce", "Search", "AI"],
+        url: "https://www.thinkwithgoogle.com/consumer-insights/consumer-trends/"
+      },
+      {
+        source: "Practical Ecommerce",
+        title: "Practical Ecommerce Articles",
+        summary: "Hands-on advice for SEO, marketplaces, and ecommerce operations.",
+        cta: "Read resource",
+        topics: ["Ecommerce", "Search"],
+        url: "https://www.practicalecommerce.com/articles"
+      },
+      {
+        source: "Search Engine Land",
+        title: "SEO and Search News",
+        summary: "Coverage of search updates that impact ecommerce discoverability.",
+        cta: "Read resource",
+        topics: ["Search", "Ecommerce", "AI"],
+        url: "https://searchengineland.com/library/channel/seo"
+      }
+    ],
+    petTitle: "Pet Industry Resources",
+    petResources: [
+      {
+        source: "APPA",
+        title: "American Pet Products Association",
+        summary: "Category trend data and market snapshots for the U.S. pet space.",
+        cta: "Read resource",
+        topics: ["Pet Industry", "Ecommerce"],
+        url: "https://americanpetproducts.org/"
+      },
+      {
+        source: "Petfood Industry",
+        title: "Petfood Industry News",
+        summary: "Coverage on nutrition, manufacturing, and category movement.",
+        cta: "Read resource",
+        topics: ["Pet Industry"],
+        url: "https://www.petfoodindustry.com/"
+      },
+      {
+        source: "Pet Age",
+        title: "Retail and Distribution Insights",
+        summary: "News and perspective on pet retail, distributors, and operators.",
+        cta: "Read resource",
+        topics: ["Pet Industry", "Ecommerce"],
+        url: "https://petage.com/"
+      },
+      {
+        source: "Pet Business",
+        title: "Pet Business News",
+        summary: "Merchandising ideas and category updates for pet commerce teams.",
+        cta: "Read resource",
+        topics: ["Pet Industry", "Ecommerce"],
+        url: "https://www.petbusiness.com/"
       }
     ]
   }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Kate Linehan | eCommerce &amp; Digital Merchandising Strategist</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="stylesheet" href="./styles.css?v=20260309a" />
+    <link rel="stylesheet" href="./styles.css?v=20260310p" />
   </head>
 
   <body data-page="index">
@@ -23,12 +23,11 @@
         <div class="brand">KATE LINEHAN</div>
 
         <nav class="nav__links" aria-label="Primary">
-          <a href="#home">HOME</a>
-          <a href="#about">ABOUT</a>
-          <a href="#selected-work">SELECTED WORK</a>
-          <a href="#growth-framework">GROWTH</a>
-          <a href="#skills-tools">SKILLS</a>
-          <a href="#contact">CONTACT</a>
+          <a href="./index.html">HOME</a>
+          <a href="./about.html">ABOUT</a>
+          <a href="./skills.html">SKILLS</a>
+          <a href="./my-blog.html">MY BLOG</a>
+          <a href="./blog.html">RESOURCES</a>
         </nav>
 
         <button
@@ -46,12 +45,11 @@
         </button>
       </div>
       <nav id="mobileNavMenu" class="mobileNavMenu" aria-label="Mobile Primary">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#selected-work">Selected Work</a>
-        <a href="#growth-framework">Growth</a>
-        <a href="#skills-tools">Skills</a>
-        <a href="#contact">Contact</a>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./skills.html">Skills</a>
+        <a href="./my-blog.html">My Blog</a>
+        <a href="./blog.html">Resources</a>
       </nav>
     </header>
 
@@ -63,8 +61,8 @@
           <p id="heroSubhead" class="hero__subhead"></p>
           <p id="heroMetaLine" class="hero__metaLine"></p>
           <div class="hero__buttons">
-            <a id="heroSelectedWorkLink" class="btn btn--interview" href="#selected-work"></a>
-            <a id="heroInterviewLink" class="btn btn--ghost" href="#contact"></a>
+            <a id="heroSelectedWorkLink" class="btn btn--interview" href="#case-studies"></a>
+            <a id="heroInterviewLink" class="btn btn--ghost" href="./contact.html"></a>
           </div>
         </div>
 
@@ -81,6 +79,13 @@
       </div>
     </main>
 
+    <section id="key-results" class="section">
+      <div class="container section__inner">
+        <h2 id="keyResultsTitle" class="section__title"></h2>
+        <div id="keyResultsList" class="keyResultsList"></div>
+      </div>
+    </section>
+
     <section id="about" class="section section--alt">
       <div class="container section__inner">
         <h2 id="aboutTitle" class="section__title"></h2>
@@ -88,26 +93,48 @@
       </div>
     </section>
 
-    <section id="selected-work" class="section">
+    <section id="case-studies" class="section">
       <div class="container section__inner">
-        <h2 id="selectedWorkTitle" class="section__title"></h2>
-        <div id="selectedWorkCards" class="selectedWorkGrid"></div>
+        <h2 id="caseStudiesTitle" class="section__title"></h2>
+        <p id="caseStudiesIntro" class="section__lede"></p>
+        <div id="caseStudiesCards" class="caseStudiesGrid"></div>
+        <a id="caseStudiesBackToTop" class="backToTopLink" href="#home"></a>
       </div>
     </section>
 
-    <section id="growth-framework" class="section">
+    <section id="platforms-retailers" class="section section--alt">
       <div class="container section__inner">
-        <h2 id="growthFrameworkTitle" class="section__title"></h2>
-        <p id="growthFrameworkIntro" class="section__lede"></p>
-        <ol id="growthFrameworkList" class="growthFrameworkList"></ol>
-        <p id="growthFrameworkOutro" class="section__lede"></p>
+        <h2 id="platformsRetailersTitle" class="section__title"></h2>
+        <p id="platformsRetailersLede" class="section__lede"></p>
+        <div id="platformsRetailersList" class="logoGrid"></div>
       </div>
     </section>
 
-    <section id="skills-tools" class="section section--alt">
+    <section id="industry-reading" class="section">
       <div class="container section__inner">
-        <h2 id="skillsToolsTitle" class="section__title"></h2>
-        <div id="skillsToolsGroups" class="skillsToolsGrid"></div>
+        <h2 id="industryReadingTitle" class="section__title"></h2>
+        <p id="industryReadingLede" class="section__lede"></p>
+        <div class="readingScroller" data-reading-scroller>
+          <button
+            class="readingScroller__button readingScroller__button--prev"
+            type="button"
+            aria-label="Scroll to previous articles"
+            data-reading-prev
+          >
+            <span aria-hidden="true">&larr;</span>
+          </button>
+          <div class="readingScroller__viewport" data-reading-viewport>
+            <div id="industryReadingCards" class="readingGrid"></div>
+          </div>
+          <button
+            class="readingScroller__button readingScroller__button--next"
+            type="button"
+            aria-label="Scroll to next articles"
+            data-reading-next
+          >
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -134,7 +161,7 @@
       </div>
     </footer>
 
-    <script src="./content.js?v=20260309a"></script>
-    <script src="./platform.js?v=20260309a"></script>
+    <script src="./content.js?v=20260310p"></script>
+    <script src="./platform.js?v=20260310p"></script>
   </body>
 </html>
