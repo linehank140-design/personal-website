@@ -1077,8 +1077,8 @@
     var hasHttpLocation =
       window.location && /^(http:|https:)$/.test(String(window.location.protocol || ""));
     var currentPath =
-      hasHttpLocation && window.location.pathname ? window.location.pathname : "/blog.html";
-    var canonicalUrl = new URL(currentPath || "/blog.html", fallbackOrigin).toString();
+      hasHttpLocation && window.location.pathname ? window.location.pathname : "/resources.html";
+    var canonicalUrl = new URL(currentPath || "/resources.html", fallbackOrigin).toString();
     var defaultDescription =
       "Curated AI, SEO, GEO, ecommerce, and pet industry resources from Kate Linehan.";
     var description = String(blog.lede || defaultDescription);
@@ -1159,8 +1159,8 @@
     var hasHttpLocation =
       window.location && /^(http:|https:)$/.test(String(window.location.protocol || ""));
     var currentPath =
-      hasHttpLocation && window.location.pathname ? window.location.pathname : "/blog.html";
-    var pageUrl = new URL(currentPath || "/blog.html", fallbackOrigin).toString();
+      hasHttpLocation && window.location.pathname ? window.location.pathname : "/resources.html";
+    var pageUrl = new URL(currentPath || "/resources.html", fallbackOrigin).toString();
     var personName =
       (content && content.global && content.global.footerName) || "Kate Linehan";
     var resources = []
