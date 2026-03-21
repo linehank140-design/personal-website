@@ -536,7 +536,7 @@ body[data-page="index"] #case-studies.section {
 }
 
 .readingScroller__viewport {
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   scrollbar-gutter: stable;
   scroll-snap-type: x proximity;
@@ -546,7 +546,7 @@ body[data-page="index"] #case-studies.section {
 .readingGrid {
   display: flex;
   gap: 18px;
-  width: max-content;
+  width: 40vw;
   min-width: 100%;
 }
 
@@ -1602,6 +1602,9 @@ body[data-page="index"] #case-studies.section {
   }
   .readingScroller__button {
     display: none;
+  }
+  .readingScroller__viewport {
+    overflow-x: auto;
   }
   .readingCard {
     flex-basis: min(86vw, 460px);
