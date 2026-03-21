@@ -9,12 +9,12 @@ window.siteContentDefaults = {
       email: "linehank140@gmail.com",
       linkedInUrl: "https://www.linkedin.com/in/katie-l-6aa1194b/"
     },
-    footerName: "Kate Linehan"
+    footerName: "Katie Linehan"
   },
   index: {
-    title: "Kate Linehan | eCommerce & Digital Merchandising Strategist",
+    title: "Katie Linehan | eCommerce & Digital Merchandising Strategist",
     hero: {
-      name: "Kate Linehan",
+      name: "Katie Linehan",
       headlineHtml: "Helping CPG brands grow online and drive stronger business results",
       subhead:
         "I partner across sales, marketing, and ecommerce teams to improve digital performance, uncover growth opportunities, and translate insights into actions that support revenue, conversion, and the bottom line.",
@@ -448,7 +448,7 @@ window.siteContentDefaults = {
     ]
   },
   blog: {
-    title: "Kate Linehan | Resources",
+    title: "Katie Linehan | Resources",
     pageTitle: "Resources",
     lede:
       "A running list of helpful websites and resources I use for AI, search, ecommerce, and pet industry insights.",

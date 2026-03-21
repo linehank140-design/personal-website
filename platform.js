@@ -671,7 +671,7 @@
     var linkedInHref = globalContact.linkedInUrl || "#";
     var emailAddress = (globalContact.email || "").trim();
     var emailHref = emailAddress
-      ? "mailto:" + encodeURIComponent(emailAddress) + "?subject=Let's%20Connect%20-%20Kate%20Linehan"
+      ? "mailto:" + encodeURIComponent(emailAddress) + "?subject=Let's%20Connect%20-%20Katie%20Linehan"
       : "#";
     setAnchor("heroInterviewLink", hero.interviewButtonLabel || "Let's Connect", linkedInHref);
     setAnchor(
@@ -693,14 +693,14 @@
   function renderSelectedWorkPage(content) {
     var indexContent = (content && content.index) || {};
     var caseStudies = indexContent.caseStudies || {};
-    document.title = "Kate Linehan | Selected Work";
+    document.title = "Katie Linehan | Selected Work";
     renderCaseStudiesSection(caseStudies);
   }
 
   function renderGrowthPage(content) {
     var indexContent = (content && content.index) || {};
     var keyResults = indexContent.keyResults || {};
-    document.title = "Kate Linehan | Growth";
+    document.title = "Katie Linehan | Growth";
     renderKeyResultsSection(keyResults);
   }
 
@@ -708,7 +708,7 @@
     var indexContent = (content && content.index) || {};
     var capabilitiesTools = indexContent.capabilitiesTools || {};
     var coursesCertifications = indexContent.coursesCertifications || {};
-    document.title = "Kate Linehan | Skills";
+    document.title = "Katie Linehan | Skills";
     renderCapabilitiesToolsSection(capabilitiesTools);
     renderCoursesCertificationsSection(coursesCertifications);
   }
@@ -722,10 +722,10 @@
     var linkedInHref = globalContact.linkedInUrl || "#";
     var emailAddress = (globalContact.email || "").trim();
     var emailHref = emailAddress
-      ? "mailto:" + encodeURIComponent(emailAddress) + "?subject=Let's%20Connect%20-%20Kate%20Linehan"
+      ? "mailto:" + encodeURIComponent(emailAddress) + "?subject=Let's%20Connect%20-%20Katie%20Linehan"
       : "#";
 
-    document.title = "Kate Linehan | Contact";
+    document.title = "Katie Linehan | Contact";
     renderContactSection(contact, linkedInHref, emailHref);
   }
 
@@ -1080,7 +1080,7 @@
       hasHttpLocation && window.location.pathname ? window.location.pathname : "/resources.html";
     var canonicalUrl = new URL(currentPath || "/resources.html", fallbackOrigin).toString();
     var defaultDescription =
-      "Curated AI, SEO, GEO, ecommerce, and pet industry resources from Kate Linehan.";
+      "Curated AI, SEO, GEO, ecommerce, and pet industry resources from Katie Linehan.";
     var description = String(blog.lede || defaultDescription);
 
     var canonical = document.querySelector("link[rel=\"canonical\"]");
@@ -1103,7 +1103,7 @@
 
     var ogTitle = document.querySelector("meta[property=\"og:title\"]");
     if (ogTitle) {
-      ogTitle.setAttribute("content", String(blog.title || "Kate Linehan | Resources"));
+      ogTitle.setAttribute("content", String(blog.title || "Katie Linehan | Resources"));
     }
 
     var ogDescription = document.querySelector("meta[property=\"og:description\"]");
@@ -1118,7 +1118,7 @@
 
     var twitterTitle = document.querySelector("meta[name=\"twitter:title\"]");
     if (twitterTitle) {
-      twitterTitle.setAttribute("content", String(blog.title || "Kate Linehan | Resources"));
+      twitterTitle.setAttribute("content", String(blog.title || "Katie Linehan | Resources"));
     }
 
     var twitterDescription = document.querySelector("meta[name=\"twitter:description\"]");
@@ -1162,7 +1162,7 @@
       hasHttpLocation && window.location.pathname ? window.location.pathname : "/resources.html";
     var pageUrl = new URL(currentPath || "/resources.html", fallbackOrigin).toString();
     var personName =
-      (content && content.global && content.global.footerName) || "Kate Linehan";
+      (content && content.global && content.global.footerName) || "Katie Linehan";
     var resources = []
       .concat(Array.isArray(blog.ecommerceResources) ? blog.ecommerceResources : [])
       .concat(Array.isArray(blog.petResources) ? blog.petResources : []);
@@ -1191,7 +1191,7 @@
       isPartOf: {
         "@type": "WebSite",
         "@id": "https://katieagate.com/#website",
-        name: "Kate Linehan",
+        name: "Katie Linehan",
         url: "https://katieagate.com/"
       },
       about: [
