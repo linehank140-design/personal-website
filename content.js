@@ -249,14 +249,6 @@ window.siteContentDefaults = {
           certificationUrl: "https://academy.hubspot.com/"
         },
         {
-          title: "Google Analytics Certification",
-          provider: "Google",
-          completionYear: "2024",
-          description:
-            "Covered GA4 reporting, event-based measurement, attribution views, and practical analysis frameworks to improve ecommerce conversion decisions.",
-          certificationUrl: "https://skillshop.withgoogle.com/"
-        },
-        {
           title: "AI for Marketing",
           provider: "Coursera",
           completionYear: "2025",
